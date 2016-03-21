@@ -1,0 +1,86 @@
+
+<%= form_for @personnel, :html => {:class => 'form-horizontal'} do |f| %>
+
+<% if @personnel.errors.any? %>
+  
+  <div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <ul>
+  <% for message in @personnel.errors.full_messages %>
+  <li><%= message %><u><a href="#leg" class="alert-link">    Plz Submit again</a></u></li>
+  <% end %>
+  </ul>
+</div>
+  
+  <% end %>
+  
+
+<fieldset>
+    <div class="col-lg-4 col-lg-offset-4">
+ <legend><a id="leg"><span class="glyphicon glyphicon-edit"></span>  Strikeone</a></legend>
+ </div>
+ <br><br><br>
+  
+  <div class="form-group">
+    <%= f.label :name, :class => "col-lg-4 control-label"  %>
+  <div class="col-lg-4">
+    <%= f.text_field :name, :class => "form-control", :placeholder => "Name", :id => "Name"  %>
+  </div>
+    </div>
+  
+     
+   
+   <div class="form-group">
+    <%= f.label :email, :class => "col-lg-4 control-label"  %>
+   <div class="col-lg-4">
+    <%= f.text_field :email, :class => "form-control", :placeholder => "Email", :id => "inputEmail"  %>
+  </div>
+    </div>
+  
+  <div class="form-group">
+    <%= f.label :mobile, :class => "col-lg-4 control-label"  %>
+   <div class="col-lg-4">
+    <%= f.text_field :mobile, :class => "form-control", :placeholder => "Mobile", :id => "inputMobile"  %>
+  </div>
+    </div>
+  
+  
+ <div class="form-group">
+    <%= f.label :password, :class => "col-lg-4 control-label"   %>
+  <div class="col-lg-4">
+    <%= f.password_field :password, :class => "form-control", :placeholder => "Password", :id => "inputPassword"   %>
+ </div>
+    </div>
+  
+  
+  
+  
+   <div class="form-group">
+    <%= f.label :password_confirmation, :class => "col-lg-4 control-label"  %>
+  <div class="col-lg-4">
+    <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Password Confirmation", :id => "confirmPassword"  %>
+   </div>
+    </div>
+  
+  
+  
+   
+ 
+
+ 
+  
+
+  <div class="form-group">
+      <div class="col-lg-4 col-lg-offset-4">
+    
+    <%= f.submit 'Sign up', :class => 'btn btn-primary' %> 
+    </div>
+    </div>
+</fieldset>
+<% end %>
+ 
+  
+
+
+
+
