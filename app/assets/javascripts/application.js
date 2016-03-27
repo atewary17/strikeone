@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require autocomplete-rails
-//= require bootstrap/modal
+
 //= require_tree .
 
 /*
