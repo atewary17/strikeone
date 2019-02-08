@@ -8,8 +8,17 @@ Rails.application.routes.draw do
   get "log_out" => 'sessions#destroy', :as => "log_out"
   get "log_in" => 'sessions#new', :as => "log_in"
   get "sign_up" => 'personnels#new', :as => "sign_up"
-  root :to => 'personnels#new'
+  root :to => 'sessions#new'
   resources :sessions
   resources :password_resets
 
+  get "windows/index"
+
+  get "windows/upload_image"
+  post "windows/upload_image"
+
+  get "windows/image_upload"
+  post "windows/image_upload"
+
+  get "windows/search_document"
 end

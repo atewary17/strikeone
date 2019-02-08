@@ -2,7 +2,7 @@ class Personnel < ActiveRecord::Base
 
   attr_accessor :password
   before_save :encrypt_password, :except => :send_password_reset 
-   before_update :encrypt_password, :except => :send_password_reset 
+  before_update :encrypt_password, :except => :send_password_reset 
   
   validates :password, :format => {:with => /(?=.*[a-zA-Z])(?=.*[0-9]).{6,}/, message: "must be at least 6 characters and include one number and one letter"}
   validates_confirmation_of :password
@@ -12,7 +12,8 @@ class Personnel < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_uniqueness_of :name
   before_create { generate_token(:auth_token) }
-  	
+  has_many :images
+	
 def send_password_reset
   generate_token(:password_reset_token)
    self.password_reset_sent_at = Time.zone.now

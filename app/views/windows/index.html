@@ -1,0 +1,28 @@
+<center>  
+<div class="card border-primary mb-3" style="max-width: 30rem;">
+  <div class="card-header"></div>
+  <div class="card-body">
+      
+    <h2 class="card-title">Home</h2>
+      <ul class="list-group">
+
+        <li class="list-group-item">
+        <span class="badge"><%= %></span>
+          <a>
+          <span></span> 
+          <%= link_to 'Upload Image', {controller: 'windows', action: 'upload_image'}, {method: :post} %>
+          </a>
+        </li>
+
+        <li class="list-group-item">
+        <span class="badge"><%= %></span>
+          <a>
+          <span></span> 
+          <%= link_to 'Search Document', {controller: 'windows', action: 'search_document'}, {method: :post} %>
+          </a>
+        </li>
+
+      </ul>
+  </div>
+</div>
+</center>

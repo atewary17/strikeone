@@ -1,0 +1,18 @@
+<div class="col-lg-4 col-lg-offset-4">
+  <div class="well bs-component">
+  <legend>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspUpload Image</legend> 
+  <br>
+  <br>
+  <%= form_tag 'image_upload', multipart: true  do %>
+    <div class="col-lg-8">
+      <%= file_field_tag "images[]",type: :file, multiple: true, class: 'filestyle', :'data-classButton' => 'btn btn-primary' %>
+    </div>
+    <br>
+    <br>
+    <center>
+    <%= button_tag type: 'submit', name:'submit', :class =>"btn btn-success"  ,'data-toogle' => "tooltip",'title' => "Upload Image"  do %>
+      <%= content_tag :strong, 'Upload' %></center>
+    <% end %>
+  <% end %>
+  </div>
+</div>
