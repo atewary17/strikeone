@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.9'
+gem 'rails', '4.2.8'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -66,9 +66,9 @@ gem 'puma_worker_killer'
 gem 'postmark-rails'
 gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 gem 'puma'
-gem "paperclip", "~> 3.0"
+gem "paperclip"
 gem 'aws-sdk', '~> 1'
 gem 'aws-sdk-resources', '~> 2'
 gem 'rails_12factor', group: :production
 
-ruby "2.2.4"
+ruby "2.4.4"
