@@ -23,5 +23,8 @@ Rails.application.routes.draw do
   get "windows/upload_register"
   post "windows/upload_register"
 
+  get "windows/process_image"
+  post "windows/process_image"
+
   get "windows/search_document"
 end

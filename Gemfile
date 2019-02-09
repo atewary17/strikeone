@@ -4,8 +4,8 @@ source 'http://rubygems.org'
 gem 'rails', '4.2.8'
 
 # Use sqlite3 as the database for Active Record
-gem 'pg', '~> 0.20'
 
+gem 'httparty'
 gem 'plivo'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -36,6 +36,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'google-cloud-vision', "~> 0.31.0"
 gem 'tzinfo-data'
 gem 'faraday'
 gem 'hypdf', '~> 1.0.7'
@@ -66,6 +67,7 @@ gem 'puma_worker_killer'
 gem 'postmark-rails'
 gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 gem 'puma'
+gem 'pg', '~> 0.20'
 gem "paperclip"
 gem 'aws-sdk-s3'
 gem 'rails_12factor', group: :production
