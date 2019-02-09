@@ -44,15 +44,13 @@ class WindowsController < ApplicationController
 		document = image.document
 		@text=document.text
 		@label=image.labels
-		puts "....................."
-		puts @label
+		# puts "....................."
+		# puts @label
+		
 		web = image.web
 
-		web.entities.each do |entity|
-		  puts entity
-		end
+		@web_entities=web.entities
 
-		redirect_to windows_index_url
 	end
 
 end
