@@ -67,8 +67,7 @@ gem 'postmark-rails'
 gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 gem 'puma'
 gem "paperclip"
-gem 'aws-sdk', '~> 1'
-gem 'aws-sdk-resources', '~> 2'
+gem 'aws-sdk-s3'
 gem 'rails_12factor', group: :production
 
 ruby "2.4.4"
