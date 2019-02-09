@@ -18,4 +18,8 @@ class WindowsController < ApplicationController
 	def search_document
 	end
 
+	def upload_register
+		@images = Image.all
+	end
+
 end
