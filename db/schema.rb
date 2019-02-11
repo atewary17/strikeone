@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190208134149) do
+ActiveRecord::Schema.define(version: 20190211103113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20190208134149) do
     t.string   "scan_content_type"
     t.integer  "scan_file_size",    limit: 8
     t.datetime "scan_updated_at"
+    t.boolean  "processed"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string   "description"
+    t.decimal  "score"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "image_id"
+    t.string   "identification_code"
   end
 
   create_table "personnels", force: :cascade do |t|
@@ -37,6 +47,15 @@ ActiveRecord::Schema.define(version: 20190208134149) do
     t.string   "mobile"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "web_entities", force: :cascade do |t|
+    t.string   "description"
+    t.decimal  "score"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "image_id"
+    t.string   "identification_code"
   end
 
 end

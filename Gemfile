@@ -63,7 +63,7 @@ gem 'puma_worker_killer'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+gem 'rufus-scheduler'
 gem 'postmark-rails'
 gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 gem 'puma'

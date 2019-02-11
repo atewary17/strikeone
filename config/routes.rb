@@ -26,5 +26,11 @@ Rails.application.routes.draw do
   get "windows/process_image"
   post "windows/process_image"
 
+  get "windows/processed_images"
+  post "windows/processed_images"
+
+  get "windows/unprocessed_uploads"
+  post "windows/unprocessed_uploads"
+
   get "windows/search_document"
 end

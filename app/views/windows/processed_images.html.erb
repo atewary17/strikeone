@@ -1,0 +1,65 @@
+<%= form_tag 'processed_images', :authenticity_token => true, :html => {:class => 'form-horizontal'}  do %>
+<center>
+  <iframe src= "<%= @picked_image.scan.url %>" class="well" height="1100" width="900" frameborder="1" onload= "resizeIframe(this)" ></iframe>
+</center>
+
+
+<table class="table table-striped table-hover table-primary" id="label_list">
+  <thead>
+  	<tr>
+  		<th>Google Vision Label Id</th>
+  		<th>Description</th>
+  		<th>Score</th>
+  		<th>Upload Date</th>
+  		<th>Image Name</th>
+  		<th>By</th>
+  	</tr>
+  </thead>
+  <tbody>
+    <% @picked_image.labels.each do |label| %>
+    	<tr>
+    		<td><%= label.identification_code %></td>
+    		<td><%= label.description %></td>
+    		<td><%= label.score %></td>
+        <td><%= @picked_image.scan_file_name %></td>
+    		<td><%= @picked_image.created_at.strftime("%d/%m/%y") %></td>
+    		<td><%= @picked_image.personnel.name %></td>
+    	</tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<table class="table table-striped table-hover table-primary" id="web_entities_list" >
+  <thead>
+    <tr>
+      <th>Google Vision Label Id</th>
+      <th>Description</th>
+      <th>Score</th>
+      <th>Upload Date</th>
+      <th>Image Name</th>
+      <th>By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @picked_image.web_entities.each do |web_entity| %>
+      <tr>
+        <td><%= web_entity.identification_code %></td>
+        <td><%= web_entity.description %></td>
+        <td><%= web_entity.score %></td>
+        <td><%= @picked_image.scan_file_name %></td>
+        <td><%= @picked_image.created_at.strftime("%d/%m/%y") %></td>
+        <td><%= @picked_image.personnel.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
+<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+</script>

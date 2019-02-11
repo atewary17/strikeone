@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require autocomplete-rails
 
@@ -392,3 +393,49 @@ a.tfootTop)},_scroll:function(b){var a=d(h).scrollTop(),e=d(h).scrollLeft(),c=th
 "in":"above",(b||a!==this.s.footerMode)&&this._modeChange(a,"footer",b),this._horizontal("footer",e)}});i.version="3.1.1";i.defaults={header:!0,footer:!1,headerOffset:0,footerOffset:0};d.fn.dataTable.FixedHeader=i;d.fn.DataTable.FixedHeader=i;d(h).on("init.dt.dtfh",function(b,a){if("dt"===b.namespace){var e=a.oInit.fixedHeader,c=j.defaults.fixedHeader;if((e||c)&&!a._fixedHeader)c=d.extend({},c,e),!1!==e&&new i(a,c)}});j.Api.register("fixedHeader()",function(){});j.Api.register("fixedHeader.adjust()",
 function(){return this.iterator("table",function(b){(b=b._fixedHeader)&&b.update()})});j.Api.register("fixedHeader.enable()",function(b){return this.iterator("table",function(a){(a=a._fixedHeader)&&a.enable(b!==k?b:!0)})});j.Api.register("fixedHeader.disable()",function(){return this.iterator("table",function(b){(b=b._fixedHeader)&&b.enable(!1)})});d.each(["header","footer"],function(b,a){j.Api.register("fixedHeader."+a+"Offset()",function(b){var c=this.context;return b===k?c.length&&c[0]._fixedHeader?
 c[0]._fixedHeader[a+"Offset"]():k:this.iterator("table",function(c){if(c=c._fixedHeader)c[a+"Offset"](b)})})});return i});
+
+
+
+$(document).ready(function(){
+var filterTable=$("#label_list").DataTable({
+  "scrollX":true,
+  // "scrollY":'76vh',
+ "dom": '<"wrapper"lit>', 
+  "lengthMenu": [ [-1, 10, 25, 50, 100], ["All", 10, 25, 50, 100] ],
+   "aoColumns": [
+                              {"bSortable": true},
+                              {"bSortable": true},
+                              {"bSortable": true},
+                              {"bSortable": true},
+                              {"bSortable": true},
+                              {"bSortable": true}
+                              // {"bSortable": false}
+                             ],
+    "order": [[ 0, "asc" ]]
+});
+$("#filterbox").keyup(function() {
+          filterTable.search(this.value).draw();
+      }); 
+});
+
+$(document).ready(function(){
+var filterTable=$("#web_entities_list").DataTable({
+  "scrollX":true,
+  // "scrollY":'76vh',
+ "dom": '<"wrapper"lit>', 
+  "lengthMenu": [ [-1, 10, 25, 50, 100], ["All", 10, 25, 50, 100] ],
+   "aoColumns": [
+                              {"bSortable": true},
+                              {"bSortable": true},
+                              {"bSortable": true},
+                              {"bSortable": true},
+                              {"bSortable": true},
+                              {"bSortable": true}
+                              // {"bSortable": false}
+                             ],
+    "order": [[ 0, "asc" ]]
+});
+$("#filterbox").keyup(function() {
+          filterTable.search(this.value).draw();
+      }); 
+});

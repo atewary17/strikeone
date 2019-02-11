@@ -1,0 +1,25 @@
+<table class="table table-striped table-hover table-primary">
+  <thead>
+   <tr>
+      <th></th>
+      <th>Id</th>
+      <th>FileName</th>
+      <th>Upload Date</th>
+      <th>By</th>
+      <th></th>
+   </tr>
+  </thead>
+
+  <tbody>
+    <% @images.each do |image| %>
+    <tr>
+      <td></td>
+      <td><%= image.id %></td>
+      <td><%= link_to image.scan_file_name, image.scan.url, target: :_blank %></td>
+      <td><%= image.created_at.strftime("%d/%m/%y") %></td>
+      <td><%= image.personnel.name %></td>
+      <td><%= submit_tag ">", name: image.id, :class => 'btn btn-default btn-xs arrowhead'%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
