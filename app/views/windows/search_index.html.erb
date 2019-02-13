@@ -1,0 +1,49 @@
+<%= form_tag 'search_index', :authenticity_token => true, :html => {:class => 'form-horizontal'} do %><section class="home-banner-area relative">
+	<div class="container">
+		<div class="row fullscreen d-flex align-items-center justify-content-center">
+			<div class="banner-content col-lg-8 col-md-12">
+			<h1 class="wow fadeIn" data-wow-duration="4s"><br> </h1>
+							<p class="text-white">
+							</p>
+			<div class="input-wrap">
+				<form action="" class="form-box d-flex justify-content-between">
+					<div class="col-md-12 col-lg-12">
+					<div class="col-md-10 col-lg-10">
+					<%= autocomplete_field_tag 'label_description', '', windows_autocomplete_label_path, class: 'form-control' %></div>
+					<div class="col-md-2 col-lg-2">
+					<button type="submit" class="btn search-btn btn-success">Search</button></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+<%= hidden_field_tag :label_description, nil %>
+<br>
+<br>
+<% if @combined_web_elements != nil %>
+	<% @combined_web_elements.each do |element| %>	
+		<section class="faculty-area section-gap">
+						<div class="thumb d-flex justify-content-center">
+							<img class="img-fluid" src="<%= element[0].scan.url %>" alt="">
+						</div>
+						<div class="meta-text text-center">
+							<h4><%= element[0].scan_file_name %></h4>
+						</div>
+		</section>
+	<% end %>
+<% end %>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,6 +12,17 @@ Rails.application.routes.draw do
   resources :sessions
   resources :password_resets
 
+  # resources :personnels do
+  #   collection do
+  #     match 'search' => 'personnels#search', via: [:get, :post], as: :search
+  #   end
+  # end
+
+  # resources :labels, only: :index do
+  #   match 'search' => 'labels#search',
+  #         on: :collection, via: [:get, :post], as: :advanced_search
+  # end
+
   get "windows/index"
 
   get "windows/upload_image"
@@ -32,5 +43,13 @@ Rails.application.routes.draw do
   get "windows/unprocessed_uploads"
   post "windows/unprocessed_uploads"
 
-  get "windows/search_document"
+  get "windows/search_index"
+  post "windows/search_index"
+
+  get "windows/search"
+  post "windows/search"
+
+  get "windows/autocomplete_label"
+  post "windows/autocomplete_label"
+  
 end

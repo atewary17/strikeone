@@ -1,4 +1,5 @@
 class WindowsController < ApplicationController
+	before_filter :search_index
 	
 	def index
 	end
@@ -8,18 +9,38 @@ class WindowsController < ApplicationController
 
 	def image_upload
 		@personnel=current_personnel
-		puts "..........................."
-		puts @personnel.name
-			if params[:images]
-		        params[:images].each { |image|
-		        @personnel.images.create(scan: image)
-		        }
-		    end
+		if params[:images]
+	        params[:images].each { |image|
+	        @personnel.images.create(scan: image)
+	        }
+	    end
 		redirect_to :back
 	end
 
-	def search_document
+	def search_index
+		if params[:label_description]
+			label_description = params[:label_description]
+			@labels=Label.where(:description => label_description)
+			@web_entities=WebEntity.where(:description => label_description)
+			@combined_web_elements = []
+			@labels.each do |label|
+				@combined_web_elements += [[label.image, label.description, label.score]]
+			end
+			@web_entities.each do |web_entity|
+				@combined_web_elements += [[web_entity.image, web_entity.description, web_entity.score]]				
+			end
+			@combined_web_elements=@combined_web_elements.sort_by{|elem| elem[2]}.reverse!
+		else
+		end
 	end
+
+	# def search
+	#   	  @search = Label.search(params[:q])
+	#   	  @label = @search.result
+	# 	if params[:q].blank?
+	#     	@labels = Label.all
+	#   	end
+ #  	end
 
 	def upload_register
 		if params.select{|key, value| value == ">" }.keys[0] != nil
@@ -73,5 +94,17 @@ class WindowsController < ApplicationController
 			web_entity_instance.identification_code = web_entity.entity_id
 			web_entity_instance.save
 		end
+	end
+
+	def autocomplete_label
+	  label_description = params[:term]
+	  label_description=label_description.gsub(/\(/, '')
+	  label_description=label_description.gsub(/\)/, '')
+	  label_description=label_description.gsub(/\&/, '')  
+	  label_description=label_description.gsub(/\s+$/, '')
+	  label_description=label_description.gsub(/\:/, '')
+	  label_description=(label_description.gsub(/\s+/, '&'))+":*"
+	  labels = Label.all.where("to_tsvector(description) @@ to_tsquery(:q)", q: label_description)
+	  render :json => labels.map { |label| {:id => label.id, :label => label.description , :value => label.description } }
 	end
 end
