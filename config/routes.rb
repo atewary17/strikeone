@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   get "windows/search"
   post "windows/search"
 
-  get "windows/autocomplete_label"
-  post "windows/autocomplete_label"
+  get "windows/autocomplete_web_entities"
+  post "windows/autocomplete_web_entities"
   
 end

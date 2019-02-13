@@ -96,7 +96,7 @@ class WindowsController < ApplicationController
 		end
 	end
 
-	def autocomplete_label
+	def autocomplete_web_entities
 	  label_description = params[:term]
 	  label_description=label_description.gsub(/\(/, '')
 	  label_description=label_description.gsub(/\)/, '')
@@ -104,7 +104,7 @@ class WindowsController < ApplicationController
 	  label_description=label_description.gsub(/\s+$/, '')
 	  label_description=label_description.gsub(/\:/, '')
 	  label_description=(label_description.gsub(/\s+/, '&'))+":*"
-	  labels = Label.all.where("to_tsvector(description) @@ to_tsquery(:q)", q: label_description)
+	  labels = WebEntity.all.where("to_tsvector(description) @@ to_tsquery(:q)", q: label_description)
 	  render :json => labels.map { |label| {:id => label.id, :label => label.description , :value => label.description } }
 	end
 end
