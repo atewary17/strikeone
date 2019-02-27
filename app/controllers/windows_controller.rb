@@ -51,12 +51,12 @@ class WindowsController < ApplicationController
 			@combined_web_elements=@combined_web_elements.sort_by{|elem| elem[2]}.reverse!
 		else
 			@combined_web_elements = []
-			web_entities=WebEntity.select(:description, :score).group(:description, :score).having("count(*) > 4").size
+			web_entities=WebEntity.select(:description, :score).group(:description, :score).having("count(*) > 2").size
 			web_entities.each do |elem|
 				weight = (elem[0][1]*elem[1]).to_f
 				@combined_web_elements += [[elem[0][0], weight]]
 			end
-			labels=Label.select(:description, :score).group(:description, :score).having("count(*) > 4").size
+			labels=Label.select(:description, :score).group(:description, :score).having("count(*) > 2").size
 			labels.each do |elem|
 				weight = (elem[0][1]*elem[1]).to_f
 				@combined_web_elements += [[elem[0][0], weight]]
