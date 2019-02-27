@@ -1,5 +1,7 @@
 class WindowsController < ApplicationController
 	before_filter :search_index
+	require 'bigdecimal'
+	require 'active_support'
 	
 	def index
 	end
@@ -26,7 +28,7 @@ class WindowsController < ApplicationController
 			@labels.each do |label|
 				@combined_web_elements += [[label.image, label.description, label.score]]
 			end
-			@web_entities.each do |web_entity|
+ 			@web_entities.each do |web_entity|
 				@combined_web_elements += [[web_entity.image, web_entity.description, web_entity.score]]				
 			end
 			@combined_web_elements=@combined_web_elements.sort_by{|elem| elem[2]}.reverse!
@@ -34,13 +36,47 @@ class WindowsController < ApplicationController
 		end
 	end
 
-	# def search
-	#   	  @search = Label.search(params[:q])
-	#   	  @label = @search.result
-	# 	if params[:q].blank?
-	#     	@labels = Label.all
-	#   	end
- #  	end
+	def uploads
+		if params[:term] != nil
+			label_description = params[:term]
+			@labels=Label.where(:description => label_description)
+			@web_entities=WebEntity.where(:description => label_description)
+			@combined_web_elements = []
+			@labels.each do |label|
+				@combined_web_elements += [[label.image, label.description, label.score]]
+			end
+ 			@web_entities.each do |web_entity|
+				@combined_web_elements += [[web_entity.image, web_entity.description, web_entity.score]]				
+			end
+			@combined_web_elements=@combined_web_elements.sort_by{|elem| elem[2]}.reverse!
+		else
+			@combined_web_elements = []
+			web_entities=WebEntity.select(:description, :score).group(:description, :score).having("count(*) > 1").size
+			web_entities.each do |elem|
+				weight = (elem[0][1]*elem[1]).to_f
+				@combined_web_elements += [[elem[0][0], weight]]
+			end
+			labels=Label.select(:description, :score).group(:description, :score).having("count(*) > 1").size
+			labels.each do |elem|
+				weight = (elem[0][1]*elem[1]).to_f
+				@combined_web_elements += [[elem[0][0], weight]]
+			end
+			@combined_web_elements = @combined_web_elements.sort_by{|elem| elem[0]}.reverse!
+			# @web_weight_elements = []
+			# @combined_web_elements.each do |element|
+			# 	@web_weight_elements += [element[0]]
+			# end 
+			@keywords = []
+			@combined_web_elements.each do |elem|
+				if elem[0] == '' || elem[0] == nil
+	 			else
+	 				@keywords += [elem[0]]
+	 			end
+			end
+			@keywords = @keywords.uniq
+		end
+	end
+
 
 	def upload_register
 		if params.select{|key, value| value == ">" }.keys[0] != nil

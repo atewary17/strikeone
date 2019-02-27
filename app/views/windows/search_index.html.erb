@@ -25,12 +25,12 @@
 <% if @combined_web_elements != nil %>
 	<% @combined_web_elements.each do |element| %>	
 		<section class="faculty-area section-gap">
-						<div class="thumb d-flex justify-content-center">
-							<img class="img-fluid" src="<%= element[0].scan.url %>" alt="">
-						</div>
-						<div class="meta-text text-center">
-							<h4><%= element[0].scan_file_name %></h4>
-						</div>
+			<div class="thumb d-flex justify-content-center">
+				<img class="img-fluid" src="<%= element[0].scan.url %>" alt="">
+			</div>
+			<div class="meta-text text-center">
+				<h4><%= link_to element[0].scan_file_name, element[0].scan.url, target: :_blank %></h4>
+			</div>
 		</section>
 	<% end %>
 <% end %>

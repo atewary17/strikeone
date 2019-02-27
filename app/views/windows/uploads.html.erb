@@ -1,0 +1,20 @@
+<%= form_tag 'uploads', :authenticity_token => true, :html => {:class => 'form-horizontal'}  do %>
+	<% if @keywords == nil %>
+		<% @combined_web_elements.each do |element| %>	
+			<section class="faculty-area section-gap">
+				<div class="thumb d-flex justify-content-center">
+					<img class="img-fluid" src="<%= element[0].scan.url %>" alt="">
+				</div>
+				<div class="meta-text text-center">
+					<h4><%= link_to element[0].scan_file_name, element[0].scan.url, target: :_blank %></h4>
+				</div>
+			</section>
+		<% end %>
+	<% else %>	
+		<center>
+			<% @keywords.each do |elem| %>
+				<%= submit_tag elem, name: "term", :class => "btn btn-outline-success" %>
+			<% end %>
+		</center>
+	<% end %>
+<% end %>
